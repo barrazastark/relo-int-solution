@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from 'react-redux';
+import "./App.css"
+import { ImageCanvas } from "./components/ImageCanvas"
+import { CategoriesList } from "./components/CategoriesList"
+import { ImagesQueue } from "./components/ImagesQueue"
+import type { RootState } from './redux/reducers';
 
 function App() {
+
+  const images = useSelector((state: RootState) => state.appState.images);
+  const index = useSelector((state: RootState) => state.appState.imageIndex);
+  const mainImage = images[index];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='main-content'>
+      <h1>Image analyzer</h1>
+      <div className='analyzer-container'>
+          <ImageCanvas 
+            imgSrc={mainImage?.url}
+          />
+          <CategoriesList mainImage={mainImage} imageIndex={index} />
+      </div>
+      <ImagesQueue />
     </div>
   );
 }

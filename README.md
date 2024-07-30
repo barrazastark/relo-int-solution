@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# Image Annotation Analyzer - Front-End Coding Challenge (React - TypeScript)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to our front-end coding challenge! Your goal is to build a React app for an interactive image annotation tool. This tool will allow users to draw bounding boxes on images, assign categories, and submit annotations for further processing.
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+- **README.md** (this file): Provides an overview of the challenge and instructions.
+- **template.html**: A basic HTML template with CSS to guide the visual structure of the analyzer.
+  - This template acts as a reference for the layout and styling of the application.
+  - Feel free to extract its CSS and HTML to use it in your components.
 
-### `npm start`
+## Implementation Notes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- We recommend structuring your application with a focus on reusability and separation of concerns.
+- Use any tools or libraries you're comfortable with to complete the task as long as you use React and TypeScript.
+- Consider using a state management library like Zustand or Redux for handling complex application states.
+- **AI Tools**: While AI tools can be helpful, we discourage their use to generate code. Your project will be evaluated in a code review/pair programming session where your understanding of the code and problem-solving approach will be assessed.
+- **Time Management**: We suggest spending no more than 2 hours on this challenge. While you have up to 4 days to submit, the intention is to assess your ability to deliver a focused solution within a reasonable timeframe.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Functionality Requirements
 
-### `npm test`
+### Use Case
+ - The intention of this analyzer is to annotate visual detections in images
+ - The user will be presented with images to annotate
+ - The user will be able to select a category for the image
+ - The user will be able to draw a bounding box around the detected object
+ - The user will be able to submit the annotation
+ - The user will be able to discard the annotation
+ - The annotation will be sent to the server for further processing based on the detection position, size and category.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Image Queue
 
-### `npm run build`
+- Fetch unanalyzed images from the following endpoint: 
+  - GET - https://5f2f729312b1481b9b1b4eb9d00bc455.api.mockbin.io/unanalyzed-images
+- Display images sequentially, allowing only one annotation at a time.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Category Selection
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Fetch a list of categories from the following endpoint: 
+  - GET - https://f6fe9241e02b404689f62c585d0bd967.api.mockbin.io/categories
+- Provide a user interface to select a single category for each image.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Bounding Box Drawing
 
-### `npm run eject`
+- Enable users to draw a single bounding box on the image.
+- Store the coordinates of the bounding box.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Annotation Submission
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Complete**: When the user clicks "Complete," send a POST request to the following endpoint: 
+  - POST - https://eb1b6f8bfab448df91c68bd442d6a968.api.mockbin.io/annotations
+  - 
+    The request body should have this structure:
+    ```json
+    {
+        "imageId": number,
+        "annotations": [{
+            "categoryId": number,
+            "boundingBoxes": [{
+                "topLeftX": number,
+                "topLeftY": number,
+                "width": number,
+                "height": number
+            }]
+        }]
+    }
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Discard**: Send a POST request with the same body structure but with an empty annotations array.
+- **Validation**: The "Complete" button should be enabled only when a category and a bounding box are selected.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Submission
 
-## Learn More
+1. Commit your changes and push them to a remote repository.
+2. Send us the repository link (we won't consider any commit pushed after you send us your submission).
+3. Include instructions to setup the project locally and a brief description of your project and any notes you want to share with us
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Evaluation Criteria
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React Best Practices**: Use appropriate components, hooks, and state management.
+- **Code Quality**: Clear, concise, and well-organized code.
+- **Functionality**: All requirements are implemented correctly.
+- **Error Handling**: Gracefully handle network errors and invalid input.
+- **[NOTE]** We won't evaluate the visual design of the application. Focus on functionality and code quality.
+
+
+We're excited to see your implementation!
+
+Feel free to ask clarifying questions if needed. Good luck!

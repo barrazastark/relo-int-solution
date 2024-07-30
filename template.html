@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Analyzer Mock UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .main-content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .analyzer-container {
+            display: flex;
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .image-container {
+            flex: 1;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .annotation {
+            position: absolute;
+            border: 2px solid #ff0000;
+            background-color: rgba(255, 0, 0, 0.15);
+            width: 100px;
+            height: 75px;
+            top: 250px;
+            left: 275px;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .options-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .options-list li:hover {
+            background-color: #e0e0e0;
+        }
+        .highlight {
+            background-color: #d0d0d0;
+            font-weight: bold;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 20px;
+        }
+        .image-queue {
+            width: 100%;
+            max-width: 1400px;
+            margin: 20px auto 0;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .queue-list {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow-x: auto;
+        }
+        .queue-item {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="main-content">
+    <h1>Image Analyzer</h1>
+    <div class="analyzer-container">
+        <div class="image-container">
+            <img
+                src="https://dummyimage.com/280/c4c4c4/ffffff&text=frame"
+                alt="Placeholder for uploaded image"
+            />
+            <div class="annotation"></div>
+        </div>
+        <div class="sidebar">
+            <div class="search-bar">
+                <input type="text" placeholder="Search options..." />
+            </div>
+            <ul class="options-list">
+                <li class="highlight">Option 1</li>
+                <li>Option 2</li>
+                <li>Option 3</li>
+                <li>Option 4</li>
+            </ul>
+            <div class="buttons">
+                <button>Discard</button>
+                <button>Confirm</button>
+            </div>
+        </div>
+    </div>
+    <div class="image-queue">
+        <h2>Next images in queue:</h2>
+        <ul class="queue-list">
+            <li class="queue-item">Image 1</li>
+            <li class="queue-item">Image 2</li>
+            <li class="queue-item">Image 3</li>
+            <li class="queue-item">Image 4</li>
+            <li class="queue-item">Image 5</li>
+            <li class="queue-item">Image 6</li>
+            <li class="queue-item">Image 7</li>
+            <li class="queue-item">Image 8</li>
+            <li class="queue-item">Image 9</li>
+            <li class="queue-item">Image 10</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
